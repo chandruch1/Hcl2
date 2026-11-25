@@ -28,6 +28,14 @@ builder.Services.AddScoped<IJwtService, JwtServices>();
 //* Register controllers
 builder.Services.AddControllers();
 
+//! routes register
+builder.Services.AddCors(option =>
+    option.AddPolicy("AngularPolicy", policy =>
+    policy
+        .WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
+
 // ! JWT key must be kept secret
 // ! Never commit production secrets to GitHub
 
@@ -70,25 +78,24 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-//* Seeder logic
+// Seeder
 await AdminSeeder.SeedAsync(app.Services);
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
-// Https Middleware
-app.UseHttpsRedirection();
+
+// CORS first
+app.UseCors("AngularPolicy");
 
 
-//* Jwt Adding
+// Authentication and authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Controllers
 app.MapControllers();
 
 app.Run();
-
-
