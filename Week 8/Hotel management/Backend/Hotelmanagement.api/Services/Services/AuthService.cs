@@ -25,4 +25,15 @@ public class AuthService : IAuthService
         var user = await _repo.AdminLoginAsync(dto);
         return user;
     }
+    public async Task<bool> CustomerRegisterAsync(CustomerRegisterdto dto)
+    {
+        var customer = new User{
+            UserName = dto.UserName,
+            Email = dto.Email,
+            Role = Role.Customers,
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+        };
+        var res = await _repo.CustomerRegisterAsync(customer);
+        return res;
+    }
 }

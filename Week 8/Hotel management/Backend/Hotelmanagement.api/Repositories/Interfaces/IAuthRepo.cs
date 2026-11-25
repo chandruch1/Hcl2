@@ -10,4 +10,5 @@ public interface IAuthRepo
 {
     public Task<bool> UserExistsAsync(string email);
     public Task<User?> AdminLoginAsync(Adminlogindto dto);
+    public Task<bool> CustomerRegisterAsync(User dto);
 }

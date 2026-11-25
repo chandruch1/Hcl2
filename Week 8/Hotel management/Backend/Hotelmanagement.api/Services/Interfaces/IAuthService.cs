@@ -7,4 +7,5 @@ public interface IAuthService
 {
      Task<bool> UserExists(string Email);
      Task<User?> LoginAdminAsync(Adminlogindto dto);
+     Task<bool> CustomerRegisterAsync(CustomerRegisterdto dto);
 }
