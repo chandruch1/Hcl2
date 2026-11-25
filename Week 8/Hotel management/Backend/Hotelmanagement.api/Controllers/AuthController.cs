@@ -20,8 +20,8 @@ public class AuthController : ControllerBase
         _JwtService=jwtService;
     }
 
-    [HttpPost("admin-login")]
-    public async Task<ActionResult> AdminLogin([FromBody] Adminlogindto dto)
+    [HttpPost("User-login")]
+    public async Task<ActionResult> AdminLogin([FromBody] UserLoginDto dto)
     {
         var exsist = await _services.UserExists(dto.Email);
         if (!exsist)
@@ -31,7 +31,7 @@ public class AuthController : ControllerBase
                 Message = "Please Register"
             });
         }
-        var user = await _services.LoginAdminAsync(dto);
+        var user = await _services.LoginAsync(dto);
         if (user == null)
         {
             return Unauthorized("Invalid email or password");

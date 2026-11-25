@@ -18,7 +18,7 @@ public class AuthRepo : IAuthRepo
         return await _context.Users.AnyAsync(u => u.Email == email);
     }
 
-    public async Task<User?> AdminLoginAsync(Adminlogindto dto)
+    public async Task<User?> LoginAsync(UserLoginDto dto)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
         return user;

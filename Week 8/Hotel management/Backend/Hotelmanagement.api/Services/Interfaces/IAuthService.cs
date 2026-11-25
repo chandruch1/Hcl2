@@ -6,6 +6,6 @@ namespace Hotelmanagement.api.Services.Interfaces;
 public interface IAuthService
 {
      Task<bool> UserExists(string Email);
-     Task<User?> LoginAdminAsync(Adminlogindto dto);
+     Task<User?> LoginAsync(UserLoginDto dto);
      Task<bool> CustomerRegisterAsync(CustomerRegisterdto dto);
 }

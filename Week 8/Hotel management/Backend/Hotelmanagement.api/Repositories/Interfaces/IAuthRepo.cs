@@ -9,6 +9,6 @@ namespace Hotelmanagement.api.Repositories.Interfaces;
 public interface IAuthRepo
 {
     public Task<bool> UserExistsAsync(string email);
-    public Task<User?> AdminLoginAsync(Adminlogindto dto);
+    public Task<User?> LoginAsync(UserLoginDto dto);
     public Task<bool> CustomerRegisterAsync(User dto);
 }

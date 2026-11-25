@@ -19,10 +19,10 @@ public class AuthService : IAuthService
         var exsist = await _repo.UserExistsAsync(email);
         return exsist;
     }
-    public async Task<User?> LoginAdminAsync(Adminlogindto dto)
+    public async Task<User?> LoginAsync(UserLoginDto dto)
 
     {
-        var user = await _repo.AdminLoginAsync(dto);
+        var user = await _repo.LoginAsync(dto);
         return user;
     }
     public async Task<bool> CustomerRegisterAsync(CustomerRegisterdto dto)
