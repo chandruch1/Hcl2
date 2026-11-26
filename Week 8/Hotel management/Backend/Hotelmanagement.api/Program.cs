@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Components.RenderTree;
 using Hotelmanagement.api.Services.Interfaces;
 using Hotelmanagement.api.Services.Services;
 using Hotelmanagement.api.Repositories.Interfaces;
+using Hotelmanagement.api.Repositories.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 builder.Services.AddScoped<IJwtService, JwtServices>();
+builder.Services.AddScoped<IHotelRepo, HotelRepo>();
+builder.Services.AddScoped<IHotelService,HotelService>();
 
 //* Register controllers
 builder.Services.AddControllers();

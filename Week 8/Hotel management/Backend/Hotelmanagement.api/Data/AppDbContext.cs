@@ -33,7 +33,7 @@ public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
             entity.Property(h => h.HotelName).IsRequired();
             entity.Property(h => h.HotelMail).IsRequired();
             entity.Property(h => h.HotelAddress).IsRequired();
-            entity.Property(h=>h.PhoneNo).IsRequired();
+            entity.Property(h=>h.HotelPhoneNo).IsRequired();
         });
     }
 }

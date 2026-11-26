@@ -6,16 +6,11 @@ using Microsoft.Identity.Client.NativeInterop;
 
 namespace Hotelmanagement.api.Repositories.Interfaces;
 
-public class AuthRepo : IAuthRepo
+public class AuthRepo (AppDbContext _context): IAuthRepo
 {
-    private readonly AppDbContext _context;
-    public AuthRepo(AppDbContext context)
+    public  Task<bool> UserExistsAsync(string email)
     {
-        _context = context;
-    }
-    public async Task<bool> UserExistsAsync(string email)
-    {
-        return await _context.Users.AnyAsync(u => u.Email == email);
+        return  _context.Users.AnyAsync(u => u.Email == email);
     }
 
     public async Task<User?> LoginAsync(UserLoginDto dto)
