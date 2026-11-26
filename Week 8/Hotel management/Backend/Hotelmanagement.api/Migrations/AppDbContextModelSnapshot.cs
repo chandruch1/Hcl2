@@ -22,6 +22,44 @@ namespace Hotelmanagement.api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Hotelmanagement.api.Model.Hotel", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"));
+
+                    b.Property<int>("AvailableRooms")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HotelAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelMail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotelName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OwnerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PhoneNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("TotalRooms")
+                        .HasColumnType("int");
+
+                    b.HasKey("HotelId");
+
+                    b.ToTable("Hotels");
+                });
+
             modelBuilder.Entity("Hotelmanagement.api.Model.User", b =>
                 {
                     b.Property<int>("Id")
@@ -35,7 +73,8 @@ namespace Hotelmanagement.api.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -52,6 +91,9 @@ namespace Hotelmanagement.api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

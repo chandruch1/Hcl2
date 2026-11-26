@@ -21,7 +21,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("User-login")]
-    public async Task<ActionResult> AdminLogin([FromBody] UserLoginDto dto)
+    public async Task<ActionResult> UserLogin([FromBody] UserLoginDto dto)
     {
         var exsist = await _services.UserExists(dto.Email);
         if (!exsist)

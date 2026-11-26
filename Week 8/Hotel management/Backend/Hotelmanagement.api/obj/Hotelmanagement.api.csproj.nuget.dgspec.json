@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj": {}
+    "C:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj": {}
   },
   "projects": {
-    "c:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj": {
+    "C:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj",
+        "projectUniqueName": "C:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj",
         "projectName": "Hotelmanagement.api",
-        "projectPath": "c:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj",
+        "projectPath": "C:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\Hotelmanagement.api.csproj",
         "packagesPath": "C:\\Users\\CHANDRU\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\obj\\",
+        "outputPath": "C:\\Users\\CHANDRU\\OneDrive\\Desktop\\Hcl 2\\Week 8\\Hotel management\\Backend\\Hotelmanagement.api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
