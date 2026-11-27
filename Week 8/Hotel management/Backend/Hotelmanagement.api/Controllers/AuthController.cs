@@ -59,6 +59,6 @@ public class AuthController : ControllerBase
         {
             return new ConflictObjectResult("Something wrong");
         }
-        return Ok("Register Succesfully");
+        return Ok(new{ message="Register Succesfully"});
     }
 }

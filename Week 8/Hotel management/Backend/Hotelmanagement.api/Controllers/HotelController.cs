@@ -4,18 +4,11 @@ using Hotelmanagement.api.Model;
 using Hotelmanagement.api.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi;
 namespace Hotelmanagement.api.Controllers;
-
 [ApiController]
 [Route("api/hotel")]
-public class HotelController : ControllerBase
+public class HotelController(IHotelService _service) : ControllerBase
 {
-    private readonly IHotelService _service;
-    public HotelController(IHotelService service)
-    {
-        _service=service;
-    }
     [HttpGet]
     public async Task<ActionResult> GetHotelAsync()
     {

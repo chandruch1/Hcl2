@@ -13,6 +13,6 @@ export class Auth {
     private http = inject(HttpClient);
 
     adminLogin(data:AdminLogindto) : Observable<AdminLoginResponseDto>{
-        return this.http.post<AdminLoginResponseDto>(`${this.Url}/admin-login`,data);
+        return this.http.post<AdminLoginResponseDto>(`${this.Url}/User-login`,data);
     }
 }
