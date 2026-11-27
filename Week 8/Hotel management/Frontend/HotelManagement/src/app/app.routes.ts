@@ -1,14 +1,56 @@
 import { Routes } from '@angular/router';
-import { AdminLogin } from './Auth/admin-login/admin-login';
-import { CustomerRegister } from './Auth/customer-register/customer-register';
 
 export const routes: Routes = [
-    {
-        path : '', redirectTo : "User-login", pathMatch : 'full'
-    },
-    {    path : "User-login",component : AdminLogin
-    },
-    {
-        path : 'customer-register', component : CustomerRegister
-    }
+
+  // Default route
+  {
+    path: '',
+    redirectTo: 'User-login',
+    pathMatch: 'full'
+  },
+
+  // Authentication routes
+  {
+    path: 'User-login',
+    loadComponent: () =>
+      import('./Auth/admin-login/admin-login')
+        .then(m => m.AdminLogin)
+  },
+
+  {
+    path: 'customer-register',
+    loadComponent: () =>
+      import('./Auth/customer-register/customer-register')
+        .then(m => m.CustomerRegister)
+  },
+
+  // Admin layout and child routes
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./layouts/admin-layout/admin-layout')
+        .then(m => m.AdminLayout),
+
+    children: [
+      {
+        path: 'list-hotels',
+        loadComponent: () =>
+          import('./Features/admin/list-hotels/list-hotels')
+            .then(m => m.ListHotels)
+      },
+
+      {
+        path: '',
+        redirectTo: 'list-hotels',
+        pathMatch: 'full'
+      }
+    ]
+  },
+
+  // Invalid routes
+  {
+    path: '**',
+    redirectTo: 'User-login'
+  }
+
 ];
