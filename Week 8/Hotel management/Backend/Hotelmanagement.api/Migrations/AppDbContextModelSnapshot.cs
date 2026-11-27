@@ -45,12 +45,12 @@ namespace Hotelmanagement.api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("HotelPhoneNo")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("OwnerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("PhoneNo")
-                        .HasColumnType("bigint");
 
                     b.Property<int>("TotalRooms")
                         .HasColumnType("int");

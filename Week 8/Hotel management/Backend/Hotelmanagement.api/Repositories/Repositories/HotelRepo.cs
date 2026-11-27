@@ -5,13 +5,8 @@ using Hotelmanagement.api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 namespace Hotelmanagement.api.Repositories.Repositories;
 
-public class HotelRepo : IHotelRepo
+public class HotelRepo(AppDbContext _context)  : IHotelRepo
 {
-    private readonly AppDbContext _context;
-    public HotelRepo(AppDbContext context)
-    {
-        _context=context;
-    }
     public Task<List<Hotel>> GetHotelAsync()
     {
         return  _context.Hotels.ToListAsync();
@@ -21,10 +16,13 @@ public class HotelRepo : IHotelRepo
         return _context.Hotels.AnyAsync(h => h.HotelMail == email);
     }
     public async Task<Hotel> AddHotelAsync(Hotel hotel)
-    
     {
         await _context.Hotels.AddAsync(hotel);
         await _context.SaveChangesAsync();
         return hotel;
+    }
+    public async Task<Hotel?> GetHotelById(int id)
+    {
+        return await _context.Hotels.FindAsync(id);
     }
 }

@@ -23,12 +23,12 @@ public class HotelController : ControllerBase
         return Ok(Hotels);
     }
     [HttpPost("hotel-add")]
-    public async Task<ActionResult> AddHotelAsync(AddHotelDto dto)
+    public async Task<ActionResult> AddHotelAsync([FromBody] AddHotelDto dto)
     {
-        var exsist = await _service.IsExist(dto.HotelMail);
+        var exsist = await _service.IsExsist(dto.HotelMail);
         if (exsist)
         {
-            return new ConflictObjectResult(new 
+            return new ConflictObjectResult(new
             {
                 Message = "Hotel Already Register"
             });
@@ -44,12 +44,13 @@ public class HotelController : ControllerBase
             TotalRooms = dto.TotalRooms
         };
         var result = await _service.AddHotelAsync(Hotel);
-        return CreatedAtAction(result);
+        return CreatedAtAction(nameof(GetHotelById),new { id = result?.HotelId },result);
     }
     [HttpGet("{id:int}")]
-    public async Task<IActionResult?> GetHotelById(int id)
+    public async Task<IActionResult?> GetHotelById([FromRoute] int id)
     {
-        
+        var Hotel = await _service.GetHotelById(id);
+        return Ok(Hotel);
     }
 
 }

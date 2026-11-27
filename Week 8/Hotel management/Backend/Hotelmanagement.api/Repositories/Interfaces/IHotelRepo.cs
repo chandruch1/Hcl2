@@ -8,4 +8,5 @@ public interface IHotelRepo
     Task<List<Hotel>> GetHotelAsync();
     Task<bool> IsExsist(string email);
     Task<Hotel> AddHotelAsync(Hotel hotel);
+    Task<Hotel?> GetHotelById(int id);
 }

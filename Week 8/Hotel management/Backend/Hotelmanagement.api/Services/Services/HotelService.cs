@@ -5,19 +5,13 @@ using Hotelmanagement.api.Services.Interfaces;
 
 namespace Hotelmanagement.api.Services.Services;
 
-public class HotelService : IHotelService
+public class HotelService (IHotelRepo _repo): IHotelService
 {
-    private readonly IHotelRepo _repo;
-    public HotelService(IHotelRepo repo)
-    {
-        _repo=repo;
-    }
     public Task<List<Hotel>> GetHotelAsync()
     {
         return  _repo.GetHotelAsync();
     }
-
-    public async Task<bool> IsExist(string email)
+    public async Task<bool> IsExsist(string email)
     {
         var IsExist = await _repo.IsExsist(email);
         return IsExist;
@@ -25,5 +19,10 @@ public class HotelService : IHotelService
     public async Task<Hotel?> AddHotelAsync(Hotel hotel)
     {
          return await _repo.AddHotelAsync(hotel);
+    }
+    public async Task<Hotel?> GetHotelById(int id)
+    {
+        var Hotel = await _repo.GetHotelById(id);
+        return Hotel;
     }
 }
