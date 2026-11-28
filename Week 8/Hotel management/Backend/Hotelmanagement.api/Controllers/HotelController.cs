@@ -45,6 +45,20 @@ public class HotelController(IHotelService _service) : ControllerBase
         var Hotel = await _service.GetHotelById(id);
         return Ok(Hotel);
     }
-
+    [HttpPut("update-hotel/{id}")]
+    public async Task<IActionResult> UpdateHotel([FromRoute] int id,[FromBody] UpdateHoteldto dto)
+    {
+        var hotel = await _service.GetHotelById(id);
+        if (hotel == null)
+        {
+            return NotFound(new{Message="Hotel Not Found"});
+        }
+        var result = await _service.UpdateHotelAsync(id, hotel);
+        if(result == null)
+        {
+            return NotFound(new{Message="Hotel Not Found"});
+        }
+        return Ok(hotel);
+    }
 }
 

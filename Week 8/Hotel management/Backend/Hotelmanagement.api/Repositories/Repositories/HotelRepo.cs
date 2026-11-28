@@ -2,6 +2,7 @@ using Hotelmanagement.api.Data;
 using Hotelmanagement.api.Migrations;
 using Hotelmanagement.api.Model;
 using Hotelmanagement.api.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 namespace Hotelmanagement.api.Repositories.Repositories;
 
@@ -24,5 +25,11 @@ public class HotelRepo(AppDbContext _context)  : IHotelRepo
     public async Task<Hotel?> GetHotelById(int id)
     {
         return await _context.Hotels.FindAsync(id);
+    }
+    public async Task<Hotel> UpdateHotelAsync(Hotel hotel)
+    {
+        _context.Hotels.Update(hotel);
+        await _context.SaveChangesAsync();
+        return hotel;
     }
 }
