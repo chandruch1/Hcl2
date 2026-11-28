@@ -34,7 +34,7 @@
           type="submit"
           class="btn btn-primary w-100"
           [disabled]="adminLoginForm.invalid">
-          Login
+          {{ Loginin ? 'loginin....' : 'Login'}}
         </button>
 
       </form>

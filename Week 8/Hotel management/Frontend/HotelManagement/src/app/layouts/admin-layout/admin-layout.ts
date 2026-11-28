@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet , RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterOutlet , RouterLinkActive, Router } from '@angular/router';
+import { Token } from '../../services/token';
 
 @Component({
   imports: [RouterLink , RouterOutlet, RouterLinkActive],
@@ -7,4 +8,11 @@ import { RouterLink, RouterOutlet , RouterLinkActive } from '@angular/router';
   styleUrl: './admin-layout.css',
   templateUrl: './admin-layout.html',
 })
-export class AdminLayout {}
+export class AdminLayout {
+  Tokenservice = inject(Token);
+  private Route = inject(Router);
+  logout() : void {
+    this.Tokenservice.clearSession();
+    this.Route.navigate(['User-login']);
+  }
+}

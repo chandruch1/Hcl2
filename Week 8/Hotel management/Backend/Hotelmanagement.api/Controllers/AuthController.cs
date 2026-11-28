@@ -40,7 +40,7 @@ public class AuthController : ControllerBase
         return Ok(new
         {
             Token = token,
-            UserMail = dto.Email
+            UserMail = dto.Email,
         });
     }
     [HttpPost("customer-Register")]

@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject} from '@angular/core';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule , FormControl, FormGroup, Validators } from '@angular/forms';
 import { Auth } from '../../services/admin/auth';
 import { Token } from '../../services/token';
@@ -24,6 +25,8 @@ export class AdminLogin {
 
   Authservice = inject(Auth);
   TokenService = inject (Token);
+  Router = inject(Router);
+  Loginin = false;
 
  adminLoginForm = new FormGroup({
   email: new FormControl('', {
@@ -41,12 +44,13 @@ export class AdminLogin {
       this.adminLoginForm.markAllAsTouched();
       return;
     }
-
+    this.Loginin=true;
     const data = this.adminLoginForm.getRawValue();
     this.Authservice.adminLogin(data).subscribe({
       next : (Response)=>{
         this.TokenService.saveSession(Response);
         alert (`login succesfully`);
+        this.Router.navigate(['admin']);
       },
       error : (err)=>{
         console.log(`error: ${err}`)
