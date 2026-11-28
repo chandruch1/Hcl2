@@ -87,10 +87,8 @@
                             </div>
 
                             <div class="modal-body">
-
                                 @if (SelectedHotel) {
-                                <form #editForm="ngForm" (ngSubmit)="UpdateHotel()">
-
+                                <form #editForm="ngForm" (ngSubmit)="UpdateHotel(SelectedHotel.hotelId)">
                                     <!-- Hotel Name -->
                                     <div class="mb-3">
                                         <label class="form-label">Hotel Name</label>

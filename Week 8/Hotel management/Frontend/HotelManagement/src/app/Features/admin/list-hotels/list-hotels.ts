@@ -1,6 +1,7 @@
 import { Component, inject, signal ,OnInit } from '@angular/core';
 import { Hotel } from '../../../services/shared/hotel';
 import { FormsModule } from '@angular/forms';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 export interface HotelsDto {
   hotelId: number;
@@ -11,6 +12,16 @@ export interface HotelsDto {
   hotelAddress: string;
   totalRooms: number;
   availableRooms: number;
+}
+
+export interface UpdateHotelDto{
+  hotelName : string,
+  hotelMail : string,
+  hotelPhoneNo : string,
+  availableRooms : Number,
+  totalRooms : Number,
+  hotelAddress : string,
+  ownerName : string
 }
 
 @Component({
@@ -26,7 +37,7 @@ export class ListHotels {
   SelectedHotel : HotelsDto | null = null;
 
   OpenEditform(data : HotelsDto) : void{
-    this.SelectedHotel=data;
+    this.SelectedHotel =data;
     console.log(this.Editpopup)
     this.Editpopup=true;
   }
@@ -50,7 +61,29 @@ export class ListHotels {
     });
   }
 
-  UpdateHotel():void{
-    
+  UpdateHotel(id:number):void{
+    if(!this.SelectedHotel){
+      return;
+    }
+    const Hoteldata : UpdateHotelDto = {
+       hotelName: this.SelectedHotel.hotelName,
+       hotelAddress : this.SelectedHotel.hotelAddress,
+       ownerName : this.SelectedHotel.ownerName,
+       hotelMail : this.SelectedHotel.hotelMail,
+       hotelPhoneNo : this.SelectedHotel.hotelPhoneNo,
+       totalRooms : this.SelectedHotel.totalRooms,
+       availableRooms :  this.SelectedHotel.availableRooms,
+    }
+    this.HotelService.UpdateHotel(id,Hoteldata).subscribe({
+      next : (Response)=>{
+        console.log(`Response : ${Response}`);
+        alert(`Hotel Updated Succesfully`);
+        this.Editpopup=false;
+      },
+      error :(err) =>{
+        console.log(`Error : ${err}`);
+        alert(`Hotel Updation Failed`);
+      },
+    });
   }
 }
